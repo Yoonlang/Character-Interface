@@ -1,30 +1,14 @@
-import React, { Suspense, useState } from "react";
-import { Canvas } from "react-three-fiber";
-import Standing from "./Standing.jsx";
-import Jump from "./Jump.jsx";
-import { OrbitControls } from "@react-three/drei";
+import React from "react";
+import { Route, Routes } from "react-router";
+import Home from "./pages/Home.jsx";
+import Create from "./pages/Create.jsx";
 
 function App() {
-  const [action, setAction] = useState("standing");
-
-  const changeAction = () => {
-    setAction((old) => (old === "standing" ? "jump" : "standing"));
-  };
-
   return (
-    <div className="App">
-      <Canvas>
-        <OrbitControls />
-        <directionalLight intensity={0.5} />
-        <ambientLight intensity={3} />
-        <Suspense fallback={null}>
-          {action === "standing" ? <Standing /> : <Jump />}
-        </Suspense>
-      </Canvas>
-      <button onClick={changeAction}>
-        {action === "standing" ? "점프" : "차렷"}
-      </button>
-    </div>
+    <Routes>
+      <Route path={"/"} element={<Home />} />
+      <Route path={"/create"} element={<Create />} />
+    </Routes>
   );
 }
 
