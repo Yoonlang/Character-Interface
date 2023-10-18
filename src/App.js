@@ -5,7 +5,7 @@ import Create from "pages/Create.jsx";
 
 function App() {
   return (
-    <Routes basename={process.env.PUBLIC_URL}>
+    <Routes>
       <Route path={"/"} element={<Home />} />
       <Route path={"/create"} element={<Create />} />
     </Routes>
