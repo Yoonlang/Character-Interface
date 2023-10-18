@@ -1,29 +1,28 @@
-import React, { Suspense, useState } from "react";
-import { Canvas } from "react-three-fiber";
-import Standing from "components/actions/Standing.jsx";
-import Jump from "components/actions/Jump.jsx";
-import { OrbitControls } from "@react-three/drei";
+import React, { useEffect } from "react";
+import Action from "components/Action";
+import useIdb from "components/hooks/useIdb";
+import { useNavigate } from "react-router";
 
 const Home = () => {
-  const [action, setAction] = useState("standing");
+  const nav = useNavigate();
 
-  const changeAction = () => {
-    setAction((old) => (old === "standing" ? "jump" : "standing"));
-  };
+  const { idb, getAllCharatersKey } = useIdb();
+
+  useEffect(() => {
+    if (idb) {
+      const handleNavByOwnCharacter = async () => {
+        const keys = await getAllCharatersKey(idb);
+        if (keys.length === 0) {
+          nav("/create");
+        }
+      };
+      handleNavByOwnCharacter();
+    }
+  }, [idb]);
 
   return (
-    <div className="App">
-      <Canvas>
-        <OrbitControls />
-        <directionalLight intensity={0.5} />
-        <ambientLight intensity={3} />
-        <Suspense fallback={null}>
-          {action === "standing" ? <Standing /> : <Jump />}
-        </Suspense>
-      </Canvas>
-      <button onClick={changeAction}>
-        {action === "standing" ? "점프" : "차렷"}
-      </button>
+    <div>
+      <Action action={"standing"} />
     </div>
   );
 };
