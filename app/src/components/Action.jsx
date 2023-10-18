@@ -4,6 +4,8 @@ import { OrbitControls } from "@react-three/drei";
 import Jump from "./actions/Jump.jsx";
 import Standing from "./actions/Standing.jsx";
 
+export const JUMP_MS = 1700;
+
 const Action = ({ action }) => {
   return (
     <Canvas>

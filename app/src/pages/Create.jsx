@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import Action from "../components/Action.jsx";
-
-const JUMP_MS = 1700;
+import Action, { JUMP_MS } from "../components/Action.jsx";
+import useIdb from "../components/hooks/useIdb.jsx";
 
 const Create = () => {
   const nav = useNavigate();
   const [action, setAction] = useState("standing");
+  const [value, setValue] = useState("");
 
   const changeAction = async () => {
     setAction((old) => (old === "standing" ? "jump" : "standing"));
@@ -18,6 +18,8 @@ const Create = () => {
     );
   };
 
+  const idb = useIdb();
+
   const createCharacter = async () => {
     // indexedDB 저장
     await changeAction();
@@ -27,8 +29,19 @@ const Create = () => {
   return (
     <div>
       <Action action={action} />
-      <input type={"text"} placeholder={"이름"} />
-      <button onClick={createCharacter}>확인</button>
+      {idb && (
+        <>
+          <input
+            type={"text"}
+            placeholder={"이름"}
+            value={value}
+            onChange={(e) => {
+              setValue(e.target.value);
+            }}
+          />
+          <button onClick={createCharacter}>확인</button>
+        </>
+      )}
     </div>
   );
 };
