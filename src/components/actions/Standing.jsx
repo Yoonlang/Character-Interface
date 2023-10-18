@@ -8,7 +8,9 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 
 export default function Model(props) {
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF("/standing.glb");
+  const { nodes, materials, animations } = useGLTF(
+    process.env.PUBLIC_URL + "/standing.glb"
+  );
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
@@ -30,4 +32,4 @@ export default function Model(props) {
   );
 }
 
-useGLTF.preload("/standing.glb");
+useGLTF.preload(process.env.PUBLIC_URL + "/standing.glb");

@@ -8,7 +8,9 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 
 export default function Model(props) {
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF("/jump.glb");
+  const { nodes, materials, animations } = useGLTF(
+    process.env.PUBLIC_URL + "/jump.glb"
+  );
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
@@ -32,4 +34,4 @@ export default function Model(props) {
   );
 }
 
-useGLTF.preload("/jump.glb");
+useGLTF.preload(process.env.PUBLIC_URL + "/jump.glb");
