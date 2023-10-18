@@ -19,6 +19,5 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
-      - run: cd /home/runner/work/Character-Interface/Character-Interface/app
       - run: npm install
       - run: npm run build
