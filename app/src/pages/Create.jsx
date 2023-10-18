@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import Action from "../components/Action.jsx";
-
-const JUMP_MS = 1700;
+import Action, { JUMP_MS } from "../components/Action.jsx";
+import useIdb from "../components/hooks/useIdb.jsx";
 
 const Create = () => {
   const nav = useNavigate();
   const [action, setAction] = useState("standing");
+  const [value, setValue] = useState("");
 
   const changeAction = async () => {
     setAction((old) => (old === "standing" ? "jump" : "standing"));
@@ -18,17 +18,43 @@ const Create = () => {
     );
   };
 
+  const { idb, insertNewCharacterInfo, getAllCharatersKey } = useIdb();
+
   const createCharacter = async () => {
-    // indexedDB 저장
+    insertNewCharacterInfo(idb, value);
     await changeAction();
     nav("/");
   };
 
+  useEffect(() => {
+    if (idb) {
+      const handleNavByOwnCharacter = async () => {
+        const keys = await getAllCharatersKey(idb);
+        // 일단 캐릭터 보유 중이라면 패스. (단일 캐릭터에 대해서만 처리)
+        if (keys.length > 0) {
+          nav("/");
+        }
+      };
+      handleNavByOwnCharacter();
+    }
+  }, [idb]);
+
   return (
     <div>
       <Action action={action} />
-      <input type={"text"} placeholder={"이름"} />
-      <button onClick={createCharacter}>확인</button>
+      {idb && (
+        <>
+          <input
+            type={"text"}
+            placeholder={"이름"}
+            value={value}
+            onChange={(e) => {
+              setValue(e.target.value);
+            }}
+          />
+          <button onClick={createCharacter}>확인</button>
+        </>
+      )}
     </div>
   );
 };
