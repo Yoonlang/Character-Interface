@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
 import { Canvas } from "react-three-fiber";
 import { OrbitControls } from "@react-three/drei";
-import Jump from "./actions/Jump.jsx";
-import Standing from "./actions/Standing.jsx";
+import Jump from "components/actions/Jump.jsx";
+import Standing from "components/actions/Standing.jsx";
 
 export const JUMP_MS = 1700;
 

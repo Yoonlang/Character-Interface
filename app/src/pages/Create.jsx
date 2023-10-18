@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import Action, { JUMP_MS } from "../components/Action.jsx";
-import useIdb from "../components/hooks/useIdb.jsx";
+import Action, { JUMP_MS } from "components/Action.jsx";
+import useIdb from "components/hooks/useIdb.jsx";
 
 const Create = () => {
   const nav = useNavigate();
