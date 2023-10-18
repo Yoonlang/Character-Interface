@@ -1,7 +1,7 @@
 import React, { Suspense, useState } from "react";
 import { Canvas } from "react-three-fiber";
-import Standing from "../actions/Standing.jsx";
-import Jump from "../actions/Jump.jsx";
+import Standing from "../components/actions/Standing.jsx";
+import Jump from "../components/actions/Jump.jsx";
 import { OrbitControls } from "@react-three/drei";
 
 const Home = () => {
