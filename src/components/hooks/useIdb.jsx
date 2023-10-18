@@ -8,6 +8,10 @@ const IDB_VERSION = 1;
 const useIdb = () => {
   const [idb, setIdb] = useState(null);
 
+  const getCharacterInfo = async (idb, key) => {
+    return await idb.get(STORE_NAME, key);
+  };
+
   const getAllCharatersKey = async (idb) => {
     return await idb.getAllKeys(STORE_NAME);
   };
@@ -33,7 +37,7 @@ const useIdb = () => {
     openIdb();
   }, []);
 
-  return { idb, getAllCharatersKey, insertNewCharacterInfo };
+  return { idb, getAllCharatersKey, getCharacterInfo, insertNewCharacterInfo };
 };
 
 export default useIdb;
