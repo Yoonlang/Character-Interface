@@ -21,6 +21,7 @@ jobs:
             ${{ runner.OS }}-
       - run: npm install
       - run: git config --global user.name "yoonlang"
+      - run: git remote add origin https://yoonlang:${{ secrets.GH_PASSWORD }}@github.com/yoonlang/Character-Interface.git
       - run: npm run deploy
       - name: Deploy to github pages
         uses: peaceiris/actions-gh-pages@v3
