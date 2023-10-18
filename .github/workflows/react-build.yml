@@ -19,5 +19,6 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
+      - run: cd app
       - run: npm install
       - run: npm run build
