@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/Character-Interface/static/css/main.4fb77320.css",
-    "main.js": "/Character-Interface/static/js/main.bc0f1435.js",
+    "main.js": "/Character-Interface/static/js/main.dafd9de9.js",
     "index.html": "/Character-Interface/index.html"
   },
   "entrypoints": [
     "static/css/main.4fb77320.css",
-    "static/js/main.bc0f1435.js"
+    "static/js/main.dafd9de9.js"
   ]
 }
